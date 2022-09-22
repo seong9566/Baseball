@@ -3,7 +3,6 @@ package site.metacoding.red.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.red.domain.team.Team;
@@ -16,7 +15,7 @@ public class TeamService {
 	private final TeamDao teamDao;
 	
 	public void 팀등록(InsertTeamDto insertTeamDto) {
-		teamDao.insert(insertTeamDto);
+		teamDao.insert(insertTeamDto.toEntity());
 	}
 	
 	public void 팀삭제(Integer id) {
