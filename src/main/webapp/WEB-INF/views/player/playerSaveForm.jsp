@@ -3,18 +3,18 @@
 
 <div class="container mt-3">
 	<form>
-		<h2>팀 등록 페이지</h2>
+		<h2>선수 등록 페이지</h2>
 		<div class="input-group mb-5">
-			<select class = "form-select" name="stadiumId">
-				<c:forEach var="stadium" items="${stadium}">
-					<option value="${stadium.id}">${stadium.name}</option>
+			<select class = "form-select" name="team">
+				<c:forEach var="team" items="${team}">
+					<option value="${team.id}">${team.name}</option>
 				</c:forEach>
-			</select> 팀 이름 : <input id="teamName"type="text" class="form-control"/>
+			</select> 
+			선수 포지션 : <input id="position"type="text" name="name" class="form-control"/>
+			선수 이름 : <input id="name"type="text" name="name" class="form-control"/>
 	</form>
-	<button id="btnSaveTeam" type="button" class="btn btn-outline-success">등록</button>
 </div>
-
-
+	<button id="btnSaveTeam" type="button" class="btn btn-outline-success">등록</button>
 <script>
 	$("#btnSaveTeam").click(()=>{
 		let data ={

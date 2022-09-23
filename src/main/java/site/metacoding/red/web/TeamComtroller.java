@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.red.domain.team.Team;
 import site.metacoding.red.service.StadiumService;
 import site.metacoding.red.service.TeamService;
 import site.metacoding.red.web.dto.response.CMRespDto;
+import site.metacoding.red.web.dto.response.team.TeamDto;
 import site.metacoding.red.web.dto.resquest.team.InsertTeamDto;
 
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class TeamComtroller {
 	
 	@GetMapping("/teamList")
 	public String teamAll(Model model) {
-		List<Team> teamList = teamService.팀목록보기();
+		List<TeamDto> teamList = teamService.팀목록보기();
 		model.addAttribute("teamList",teamList);
 		return "team/teamList";
 	}

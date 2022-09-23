@@ -10,7 +10,6 @@
 				<th>경기장</th>
 				<th>지역</th>
 				<th>개장일</th>
-				<th>수정</th>
 				<th>삭제</th>
 			</tr>
 		</thead>
@@ -22,30 +21,36 @@
 					<td>${stadium.name}</td>
 					<td>${stadium.toarea}</td>
 					<td>${stadium.createdAt}</td>
-					<td><a href="/stardiumUpdateForm/${stardium.id}/${stardium.name}"><i class="fa fa-wrench"></i></a></td>
-					<td><button id = "btnStadiumDelete" type="button"  class="btn btn-outline-danger">삭제버튼</button></td>
+					<td><button onclick="btndeleteStadium(${stadium.id},this);" class="fa fa-minus">삭제</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
 <script>
-$("#btnStadiumDelete").click(()=>{
-	let id = $("#id").val();
-	console.log(id);
+function btndeleteStadium(id,obj){
+	//해당 행 삭제
+	let tr = $(obj).parent().parent();
 	
-	$.ajax("/stadiumForm/delete",{
+	let data = {
+			id : id
+	}
+	console.log(data);
+	$.ajax("/stadiumList/delete",{
 		type: "DELETE",
-		dataType: "JSON",// 응답 타입
+		data: data,
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		dataType: "JSON" 
 	}).done((res)=>{
-		if(res.code ==1){
-			alert("삭제 성공");
-			//location.reload();
+		if(res.code == 1){
+		console.log(res);
+		tr.remove();
+		alert("성공");
 		}
 		else{
-			alert("삭제 실패");
+		alert("실패");
 		}
 	});
-});
+}
 </script>
 <%@ include file="../layout/footer.jsp"%>

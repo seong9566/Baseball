@@ -2,33 +2,35 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container mt-3">
-	<h2>포지션별 팀의 야구 선수 페이지</h2>
+	<h2>선수 목록 보기 페이지</h2>
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th>번호</th>
+				<th>팀이름</th>
 				<th>포지션</th>
-				<th>롯데</th>
-				<th>두산</th>
-				<th>KT위즈</th>
+				<th>선수이름</th>
+				<th>등록일</th>
+				<th>퇴출</th>
 			</tr>
 		</thead>
 
 		<tbody>
+			<c:forEach var="playerList" items="${playerList}">
 				<tr>
-					<c:forEach var="stat" items="${stats}">
-						<tr>
-							<td>${stat.position}</td>
-							<td>${stat.doosan}</td>
-							<td>${stat.nc}</td>
-							<td>${stat.lotte}</td>
-						</tr>
-					</c:forEach>
+					<td>${playerList.no}</td>
+					<td>${playerList.teamName}</td>
+					<td>${playerList.position}</td>
+					<td>${playerList.name}</td>
+					<td>${playerList.createdAt}</td>
+					<td><button onclick="btndeletePlayer(${playerList.id},this);" class="fa fa-minus">삭제</button></td>
 				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
 <script>
-function btnTeamDelete(id,obj){
+function btndeleteStadium(id,obj){
 	//해당 행 삭제
 	let tr = $(obj).parent().parent();
 	
@@ -36,7 +38,7 @@ function btnTeamDelete(id,obj){
 			id : id
 	}
 	console.log(data);
-	$.ajax("/deleteTeam",{
+	$.ajax("/stadiumList/delete",{
 		type: "DELETE",
 		data: data,
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",

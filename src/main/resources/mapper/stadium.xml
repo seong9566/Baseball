@@ -6,8 +6,11 @@
 	namespace="site.metacoding.red.domain.stadium.StadiumDao">
 
 	<select id="findAll"
-		resultType="site.metacoding.red.domain.stadium.Stadium">
-		SELECT * FROM stadium 
+		resultType="site.metacoding.red.web.dto.response.stadium.StadiumDto">
+		SELECT id, name, toarea,createdAt, 
+		(SELECT COUNT(*) + 1 FROM stadium WHERE name <![CDATA[<]]> s.name) AS no
+		FROM stadium s
+		order by NO;
 	</select>
 
 	<insert id="insert">

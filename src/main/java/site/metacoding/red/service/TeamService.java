@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.red.domain.team.Team;
 import site.metacoding.red.domain.team.TeamDao;
+import site.metacoding.red.web.dto.response.team.TeamDto;
 import site.metacoding.red.web.dto.resquest.team.InsertTeamDto;
 @RequiredArgsConstructor
 @Service
@@ -22,7 +23,11 @@ public class TeamService {
 		teamDao.deleteById(id);
 	}
 	
-	public List<Team> 팀목록보기() {
+	public List<TeamDto> 팀목록보기() {
+		List<TeamDto> teamList = teamDao.findAllJoin();
+		return teamList;
+	}
+	public List<Team> 팀목록가져가기(){
 		List<Team> teamList = teamDao.findAll();
 		return teamList;
 	}

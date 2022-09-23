@@ -1,6 +1,5 @@
 package site.metacoding.red.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.red.domain.stadium.Stadium;
 import site.metacoding.red.domain.stadium.StadiumDao;
+import site.metacoding.red.web.dto.response.stadium.StadiumDto;
 import site.metacoding.red.web.dto.resquest.stadium.InsertStadiumDto;
 import site.metacoding.red.web.dto.resquest.stadium.UpdateStadiumDto;
 
@@ -39,8 +39,8 @@ public class StadiumService {
 		return stadiumDao.findById(id);
 	}
 	
-	public List<Stadium> 경기장목록보기() {
-		List<Stadium> stadiums = stadiumDao.findAll();
+	public List<StadiumDto> 경기장목록보기() {
+		List<StadiumDto> stadiums = stadiumDao.findAll();
 		return stadiums;
 	}
 }
