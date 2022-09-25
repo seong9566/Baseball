@@ -30,7 +30,7 @@
 	</table>
 </div>
 <script>
-function btndeleteStadium(id,obj){
+function btndeletePlayer(id,obj){
 	//해당 행 삭제
 	let tr = $(obj).parent().parent();
 	
@@ -38,7 +38,7 @@ function btndeleteStadium(id,obj){
 			id : id
 	}
 	console.log(data);
-	$.ajax("/stadiumList/delete",{
+	$.ajax("/deletePlayer",{
 		type: "DELETE",
 		data: data,
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -48,6 +48,7 @@ function btndeleteStadium(id,obj){
 		console.log(res);
 		tr.remove();
 		alert("성공");
+		location.reload();
 		}
 		else{
 		alert("실패");

@@ -12,4 +12,5 @@ public class StadiumDto {
 	private String name;
 	private String toarea;
 	private Timestamp createdAt;
+	private Integer no;
 }

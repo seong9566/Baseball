@@ -11,7 +11,7 @@
 		p.name ) AS no
 		FROM player p INNER JOIN team t
 		ON p.teamId = t.id
-		order by no;
+		order by no
 	</select>
 
 	<select id="findAll"

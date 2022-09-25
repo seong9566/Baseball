@@ -2,39 +2,40 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container mt-3">
-	<h2>포지션별 팀의 야구 선수 페이지</h2>
+	<h2>팀 목록 보기</h2>
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>포지션</th>
-				<th>롯데</th>
-				<th>두산</th>
-				<th>KT위즈</th>
+				<th>번호</th>
+				<th>경기장 이름</th>
+				<th>팀 이름</th>
+				<th>창단일</th>
+				<th>삭제</th>
 			</tr>
 		</thead>
 
 		<tbody>
+			<c:forEach var="team" items="${teamList}">
 				<tr>
-					<c:forEach var="stat" items="${stats}">
-						<tr>
-							<td>${stat.position}</td>
-							<td>${stat.doosan}</td>
-							<td>${stat.nc}</td>
-							<td>${stat.lotte}</td>
-						</tr>
-					</c:forEach>
+					<td>${team.no}</td>
+					<td>${team.stadiumName}</td>
+					<td>${team.teamName}</td>
+					<td>${team.createdAt}</td>
+					<td><button onclick="btnDeleteTeam(${team.id},this);" class="fa fa-minus">삭제</button></td>
 				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
 <script>
-function btnTeamDelete(id,obj){
+function btnDeleteTeam(id,obj){
 	//해당 행 삭제
 	let tr = $(obj).parent().parent();
 	
 	let data = {
 			id : id
 	}
+	
 	console.log(data);
 	$.ajax("/deleteTeam",{
 		type: "DELETE",
@@ -46,6 +47,7 @@ function btnTeamDelete(id,obj){
 		console.log(res);
 		tr.remove();
 		alert("성공");
+		location.reload();
 		}
 		else{
 		alert("실패");

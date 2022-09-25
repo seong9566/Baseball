@@ -10,7 +10,7 @@
 		SELECT id, name, toarea,createdAt, 
 		(SELECT COUNT(*) + 1 FROM stadium WHERE name <![CDATA[<]]> s.name) AS no
 		FROM stadium s
-		order by NO;
+		order by no
 	</select>
 
 	<insert id="insert">

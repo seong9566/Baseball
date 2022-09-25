@@ -17,7 +17,7 @@
 		<tbody>
 			<c:forEach var="stadium" items="${stadiumList}">
 				<tr>
-					<td>${stadium.id}</td>
+					<td>${stadium.no}</td>
 					<td>${stadium.name}</td>
 					<td>${stadium.toarea}</td>
 					<td>${stadium.createdAt}</td>
@@ -46,6 +46,7 @@ function btndeleteStadium(id,obj){
 		console.log(res);
 		tr.remove();
 		alert("성공");
+		location.reload();
 		}
 		else{
 		alert("실패");

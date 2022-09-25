@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class PlayerController {
 		return "player/playerSaveForm";
 	}
 	@PostMapping("/playerSave")
-	public @ResponseBody CMRespDto<?> playSave(InsertPlayerDto insertPlayerDto) {
+	public @ResponseBody CMRespDto<?> playSave(@RequestBody InsertPlayerDto insertPlayerDto) {
 		playerService.선수등록(insertPlayerDto);
 		return new CMRespDto<>(1, "선수등록성공", null);
 	}

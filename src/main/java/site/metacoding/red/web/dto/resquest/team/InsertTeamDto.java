@@ -9,10 +9,10 @@ import site.metacoding.red.domain.team.Team;
 @Setter
 public class InsertTeamDto {
 	private Integer stadiumId;
-	private String name;
+	private String teamName;
 	
 	public Team toEntity() {
-		Team team = new Team(this.stadiumId, this.name);
+		Team team = new Team(this.stadiumId, this.teamName);
 		return team;
 	}
 }

@@ -19,7 +19,7 @@ import site.metacoding.red.web.dto.resquest.team.InsertTeamDto;
 
 @RequiredArgsConstructor
 @Controller
-public class TeamComtroller {
+public class TeamController {
 
 	private final TeamService teamService;
 	private final StadiumService stadiumService;

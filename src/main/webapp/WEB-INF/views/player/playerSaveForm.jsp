@@ -5,7 +5,7 @@
 	<form>
 		<h2>선수 등록 페이지</h2>
 		<div class="input-group mb-5">
-			<select class = "form-select" name="team">
+			<select id = "teamId" class = "form-select" name="team">
 				<c:forEach var="team" items="${team}">
 					<option value="${team.id}">${team.name}</option>
 				</c:forEach>
@@ -14,14 +14,16 @@
 			선수 이름 : <input id="name"type="text" name="name" class="form-control"/>
 	</form>
 </div>
-	<button id="btnSaveTeam" type="button" class="btn btn-outline-success">등록</button>
+	<button id="btnSavePlayer" type="button" class="btn btn-outline-success">등록</button>
 <script>
-	$("#btnSaveTeam").click(()=>{
+	$("#btnSavePlayer").click(()=>{
 		let data ={
-				teamName : $("#teamName").val(),
+				teamId : $("#teamId").val(),
+				position : $("#position").val(),
+				name : $("#name").val()
 		};
 		console.log(data);
-		$.ajax("/team",{
+		$.ajax("/playerSave",{
 			type: "POST",
 			dataType: "JSON",// 응답 타입
 			data: JSON.stringify(data),// 전달 타입 
@@ -31,7 +33,7 @@
 		}).done((res)=>{
 			if(res.code ==1){
 				alert("등록 성공");
-			//	location.href = "/teamList";
+				location.href = "/playerList";
 			}
 			else{
 				alert("등록 실패 ");

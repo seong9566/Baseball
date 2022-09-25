@@ -5,7 +5,7 @@
 	<form>
 		<h2>팀 등록 페이지</h2>
 		<div class="input-group mb-5">
-			<select class = "form-select" name="stadiumId">
+			<select id = "stadiumId" class = "form-select" name="stadiumId">
 				<c:forEach var="stadium" items="${stadium}">
 					<option value="${stadium.id}">${stadium.name}</option>
 				</c:forEach>
@@ -19,6 +19,8 @@
 	$("#btnSaveTeam").click(()=>{
 		let data ={
 				teamName : $("#teamName").val(),
+				stadiumId : $("#stadiumId").val()
+				
 		};
 		console.log(data);
 		$.ajax("/team",{
@@ -31,7 +33,7 @@
 		}).done((res)=>{
 			if(res.code ==1){
 				alert("등록 성공");
-			//	location.href = "/teamList";
+				location.href = "/teamList";
 			}
 			else{
 				alert("등록 실패 ");

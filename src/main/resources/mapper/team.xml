@@ -11,7 +11,7 @@
 
 	<select id="findAllJoin"
 		resultType="site.metacoding.red.web.dto.response.team.TeamDto">
-		SELECT t.id, s.name stadiumName, t.name teamName, t.createdAt
+		SELECT t.id,s.name stadiumName, t.name teamName, t.createdAt
 		, ( SELECT COUNT(*) + 1 FROM team WHERE name <![CDATA[<]]> t.name ) AS no
 		FROM team t INNER JOIN stadium s
 		ON t.stadiumId = s.id
